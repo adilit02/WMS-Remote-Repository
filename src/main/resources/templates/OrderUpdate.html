@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+		<header th:insert="OrderMaster.html"> </header>
+		<h1 class="text-center text-danger">Order Update</h1>
+
+		<form th:action="@{/createorder}" th:method="post" th:object="${ord}">
+
+			 <div class="mb-3">
+
+				<input type="hidden" class="form-control" id="exampleInputId"
+					aria-describedby="NameHelp" th:field="*{orderId}">
+
+			</div>
+ 
+			<div class="mb-3">
+				<label for="exampleInputName" class="form-label">OrderType :</label>
+				<input type="text" class="form-control" id="exampleInputName"
+					aria-describedby="NameHelp" th:field="*{orderType}">
+
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label"> Order
+					Code :</label> <input type="text" class="form-control"
+					id="exampleInputEmail1" aria-describedby="emailHelp"
+					th:field="*{orderCode}">
+
+			</div>
+
+			<br>
+			<button type="submit" class="btn btn-primary">Order Update
+				Here.</button>
+		</form>
+	</div>
+
+
+</body>
+
+</html>

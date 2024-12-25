@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<header th:insert="master.html"> </header>
+
+	<div class="container">
+		<h1 class="text-center text-danger">User Update</h1>
+
+		<form th:action="@{/createuser}" th:method="post" th:object="${usr}">
+
+			<div class="mb-3">
+
+				<input type="text" id="exampleInputId" hidden="" th:field="*{id}">
+
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputName" class="form-label">User Name :</label>
+				<input type="text" class="form-control" id="exampleInputName" aria-describedby="NameHelp"
+					th:field="*{name}">
+
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label">User
+					Email :</label> <input type="email" class="form-control" id="exampleInputEmail1"
+					aria-describedby="emailHelp" th:field="*{email}">
+
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputPassword1" class="form-label">User
+					Password :</label> <input type="text" class="form-control" id="exampleInputPassword1"
+					th:field="*{password}">
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputRoll1" class="form-label">User Roll
+					:</label> <input type="text" class="form-control" id="exampleInputRoll" th:field="*{roll}">
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary">User Update
+				Here.</button>
+	</div>
+	</form>
+	<!-- <h2 class="text-success" th:text="${msg}"></h2>
+ -->
+</body>
+
+</html>

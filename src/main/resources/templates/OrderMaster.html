@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+//Initialization for ES Users
+import { Ripple, initMDB } from "mdb-ui-kit";
+
+initMDB({ Ripple });
+</script>
+</head>
+<body>
+
+	<div class="container-fluid">
+
+		<ul class="nav nav-tabs">
+
+			<li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+			<li class="nav-item"><a th:href="@{/regorder}" class="nav-link">Order</a></li>
+			<li class="nav-item"><a th:href="@{/orderview}" class="nav-link">View
+					Order</a></li>
+
+			<li class="nav-item"><a th:href="@{/ait/orderitem}"
+				class="nav-link"> OrderItem</a></li>
+
+
+
+			<li class="nav-item"><a th:href="@{/orderItemview}"
+				class="nav-link">View OrderItem</a></li>
+
+
+			<li class="nav-item"><a class="nav-link active" href="#">LogOut</a></li>
+
+
+
+		</ul>
+
+
+	</div>
+</body>
+</html>

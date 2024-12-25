@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+#exampleInputRoll {
+	width: 300px;
+	margin-left: 640px;
+	position: relative;
+	bottom: 40px;
+}
+
+#exampleInputRoll1 {
+	width: 300px;
+	position: relative;
+	/* left: 240px;
+	top: 30px;
+ */
+}
+
+.lable {
+	position: relative;
+	left: 550px;
+	bottom: 0px;
+}
+</style>
+
+
+<script type="text/javascript">
+	function swapValues() {
+		var input1 = document.getElementById("exampleInputRoll1");
+		var input2 = document.getElementById("exampleInputRoll");
+
+		// Swap the values of the two input fields
+		var temp = input1.value;
+		input1.value = input2.value;
+		input2.value = temp;
+	}
+</script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+	<div class="container">
+		<header th:insert="master.html"> </header>
+		<h1 class="text-center text-danger">User Registration</h1>
+
+		<form th:action="@{/createuser}" th:method="post" th:object="${usr}">
+
+			<div class="mb-3">
+
+				<input type="hidden" class="form-control" id="exampleInputId"
+					th:field="*{id}">
+
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputName" class="form-label">User Name :</label>
+				<input type="text" class="form-control" id="exampleInputName"
+					aria-describedby="NameHelp" th:field="*{name}">
+
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label">User
+					Email :</label> <input type="email" class="form-control"
+					id="exampleInputEmail1" aria-describedby="emailHelp"
+					th:field="*{email}">
+
+			</div>
+			<div class="mb-3">
+				<label for="exampleInputPassword1" class="form-label">User
+					Password :</label> <input type="password" class="form-control"
+					id="exampleInputPassword1" th:field="*{password}">
+			</div>
+
+			<!-----------------------------Daynamik Data------------------------------------------------>
+
+			<div class="mb-3">
+				<label for="exampleInputRoll1">User Roll :</label> <input
+					type="text" id="exampleInputRoll1" class="form-control"
+					th:field="*{roll}" onfocus="swapValues()">
+
+			</div>
+
+			<div class="from-group">
+				<div class="w-50">
+					<label for="" class="lable">View Role</label> <select name="Roll"
+						class="from-select form-control" id="exampleInputRoll"
+						th:field="*{roll}" onfocus="swapValues()">
+
+						<option value=" ">User Roll</option>
+
+						<th:block th:each="r : ${rollData}">
+							<option th:value="${r.roll}" th:text="${r.roll}"></option>
+						</th:block>
+
+						<!-- <option value="Admin">Admin</option>
+						<option value="User">User</option>
+						<option value="Manager">Manager</option> -->
+
+					</select>
+				</div>
+			</div>
+			<!---------------------------------------------------------------------->
+			<br>
+			<button type="submit" class="btn btn-primary">User Register
+				Here.</button>
+
+		</form>
+
+	</div>
+	<h2 class="text-success" th:text="${msg}"></h2>
+
+</body>
+
+</html>
