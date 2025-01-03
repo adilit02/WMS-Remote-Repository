@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+	<div class="container mt-3">
+		<header th:insert="OrderMaster.html"> </header>
+
+		<h2>OrderItem Table</h2>
+
+		<table class="table table-bordered">
+			<thead>
+
+				<tr>
+					<th>OrderItem Id</th>
+					<th>Order Id</th>
+					<th>InvenTory Id</th>
+					<th>OrderItem Quantity</th>
+					<th>OrderItem Price</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ordItem : ${OrderItemList}">
+					<td th:text="${ordItem.id}"></td>
+
+					<td th:text="${ordItem.orderId}"></td>
+
+					<td th:text="${ordItem.inventoryId}"></td>
+
+					<td th:text="${ordItem.quantity}"></td>
+					<td th:text="${ordItem.price}"></td>
+
+					<td><a
+						th:href="@{/orderItemupdate?orderItemId={id}(id=${ordItem.id})}">Update</a></td>
+
+					<td><a
+						th:href="@{/orderItemudelete?orderItemId={id}(id=${ordItem.id})}">Delete</a></td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<div class="backbtn">
+			<button id="btn_link" class="btn btn-secondary">
+				<a th:href="@{/ait}" class="MasterBtn">Master Page </a>
+			</button>
+
+		</div>
+</body>
+
+</html>
+

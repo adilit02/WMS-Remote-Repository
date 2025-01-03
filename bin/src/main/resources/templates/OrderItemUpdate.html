@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.backbtn {
+	position: relative;
+	left: 750px;
+	bottom: 35px;
+}
+
+#btn_link {
+	width: 200px;
+	margin-right: 300px;
+}
+
+.MasterBtn {
+	color: black;
+	text-decoration: none;
+}
+</style>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+		<header th:insert="OrderMaster.html"> </header>
+		<h1 class="text-center text-danger">Update OrderItem</h1>
+
+		<form th:action="@{/createorderItem}" th:method="post"
+			th:object="${ordItem}">
+
+			<div class="mb-3">
+
+				<input type="hidden" class="form-control" id="exampleInputId"
+					th:field="*{id}">
+			</div>
+
+
+
+			<div class="mb-3">
+
+				<input type="hidden" class="form-control" id="exampleInputId"
+					th:field="*{orderId}">
+			</div>
+
+			<div class="mb-3">
+
+				<input type="hidden" class="form-control" id="exampleInputId"
+					th:field="*{inventoryId}">
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputName" class="form-label">OrderIem
+					Quantity :</label> <input type="text" class="form-control"
+					id="exampleInputName" aria-describedby="NameHelp"
+					th:field="*{quantity}">
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputEmail1" class="form-label">OrderIem
+					Price :</label> <input type="text" class="form-control"
+					id="exampleInputEmail1" aria-describedby="emailHelp"
+					th:field="*{price}">
+			</div>
+
+			<br>
+			<button type="submit" class="btn btn-primary">OrderItem
+				Register Here.</button>
+		</form>
+
+	</div>
+
+	<div class="backbtn">
+		<button id="btn_link" class="btn btn-secondary">
+			<a th:href="@{/ait}" class="MasterBtn">Master Page </a>
+		</button>
+
+	</div>
+
+	<h2 class="text-success" th:text="${msg}"></h2>

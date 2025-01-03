@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+	<div class="container mt-3">
+		<header th:insert="master.html"> </header>
+		<h2>User Table</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Password</th>
+					<th>Roll</th>
+					<th>Date</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${UserList}">
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.email}"></td>
+					<td th:text="${user.password}"></td>
+					<td th:text="${user.roll}"></td>
+					<td th:text="${user.createdAt}"></td>
+
+					<td><a th:href="@{/userupdate?id={id}(id=${user.id})}">Update</a></td>
+
+					<!-- <td>  <a th:href="@{'/update/' + ${emp.Eid} + '/' + ${emp.Ename}+ '/' +${emp.Eemail} +'/' + ${emp.Epassword}}">Update</a></td> -->
+
+					<td><a th:href="@{'/userdelete/' + ${user.id}}">Delete</a></td>
+
+				</tr>
+
+			</tbody>
+		</table>
+
+	</div>
+
+</body>
+
+</html>
