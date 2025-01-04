@@ -9,28 +9,27 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @Entity
-@ToString(exclude = {"Product"})
-@Table(name = "order_table")
-public class Order {
+@ToString(exclude = {"order", "shipment"})
+@Table(name="product")
+public class Product {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer pid;
+	private String pname;
 	
-	private Integer orderId;
-	private String orderType;
-	private String orderCode;
-
+	@ManyToOne(cascade = CascadeType.ALL )
+	private Order order;
 	
-	@OneToMany(mappedBy = "order",cascade =CascadeType.ALL )
+	@ManyToOne(cascade = CascadeType.ALL )
 	
-	 private List<Product> product;
-
+	private Shipment shipment;
 
 	
 }

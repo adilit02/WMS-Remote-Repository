@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.backbtn {
+	position: relative;
+	left: 750px;
+	bottom: 35px;
+}
+
+#btn_link {
+	width: 200px;
+	margin-right: 300px;
+}
+
+.MasterBtn {
+	color: black;
+	text-decoration: none;
+}
+</style>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+
+	<div class="container">
+		<header th:insert="OrderMaster.html"> </header>
+
+		<h2>Product Page</h2>
+		<h1 class="text-center text-danger">Product</h1>
+
+		<form th:action="@{/prodsave}" th:method="post" th:object="${product}">
+
+			<div class="mb-3">
+
+				<input type="hidden" class="form-control" id="exampleInputId"
+					th:field="*{pid}">
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleInputName" class="form-label">Product
+					Name :</label> <input type="text" class="form-control"
+					id="exampleInputName" aria-describedby="NameHelp"
+					th:field="*{pname}">
+			</div>
+<br>
+			<div class="mb-3">
+				<label for="exampleInputName" class="form-label">Order Type
+					:</label> <select th:field="*{order}">
+					<option value=" ">--Order--</option>
+					<option th:each="ord:${order}" th:value="${ord.key}"
+						th:text="${ord.value}"></option>
+
+
+				</select> <label for="exampleInputName" class="form-label">Shipment
+					Type :</label> <select th:field="*{shipment}">
+					<option value=" ">--Shipment--</option>
+					<option th:each="ship:${shipment}" th:value="${ship.key}"
+						th:text="${ship.value}"></option>
+				</select>
+
+
+			</div>
+
+
+
+			<br>
+			<button type="submit" class="btn btn-primary">Order Register
+				Here.</button>
+		</form>
+
+	</div>
+
+	<div class="backbtn">
+		<button id="btn_link" class="btn btn-secondary">
+			<a th:href="@{/ait}" class="MasterBtn">Master Page </a>
+		</button>
+
+	</div>
+
+	<h2 class="text-success" th:text="${msg}"></h2>

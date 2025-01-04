@@ -7,18 +7,16 @@ import ait.com.entity.Shipment;
 
 public interface ShipmentService {
 
-	public List<Shipment> getAllShipment();
-
 	public Shipment createdShipment(Shipment shipment);
+
+	public List<Shipment> getAllShipment();
 
 	public Optional<Shipment> getShipmentById(Integer Id);
 
 	public Shipment updateShipment(Shipment shipment);
 
 	public void deleteShipment(Integer Id);
-	
-	public List<Shipment> findByOrderId(Long Id);
 
-	
+	public List<Shipment> findByOrderId(Long Id);
 
 }

@@ -29,10 +29,5 @@ public class OrderItem {
 	
 	private Double price;
 
-	@OneToMany(mappedBy = "orderitem",cascade =CascadeType.ALL )
-	private List<Order> order;
 	
-	
-	@OneToMany(mappedBy = "orderitem",cascade =CascadeType.ALL )
-	 private List<Inventory> inventory;
 }
