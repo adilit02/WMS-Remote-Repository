@@ -35,7 +35,6 @@
 
 <body>
 
-
 	<div class="container">
 		<header th:insert="OrderMaster.html"> </header>
 
@@ -56,7 +55,8 @@
 					id="exampleInputName" aria-describedby="NameHelp"
 					th:field="*{pname}">
 			</div>
-<br>
+                  <br>
+                  
 			<div class="mb-3">
 				<label for="exampleInputName" class="form-label">Order Type
 					:</label> <select th:field="*{order}">
@@ -74,8 +74,6 @@
 
 
 			</div>
-
-
 
 			<br>
 			<button type="submit" class="btn btn-primary">Order Register
