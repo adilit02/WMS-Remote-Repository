@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import ait.com.ExcelSheet.ExcelExport;
 import ait.com.entity.User;
 import ait.com.service.UserService;
 
@@ -88,4 +90,15 @@ public class UserControllar {
 
 	// ____________________________________________________________________
 
+	@GetMapping("/excel")
+	public ModelAndView getExcelSheet(){
+		
+		List<User> list = userService.getAllUser();
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("UserList", list);
+		model.setView(new ExcelExport());
+
+		      return model;
+	}
 }

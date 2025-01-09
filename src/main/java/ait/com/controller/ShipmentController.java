@@ -21,12 +21,13 @@ public class ShipmentController {
 	@Autowired
 	private ShipmentService shipService;
 
+	
 	@GetMapping("/shipmentorder")
 	public String OrderMaster(Model model) {
 		Shipment shipment = new Shipment();
-
+		
+	
 		model.addAttribute("ship", shipment);
-
 		return "ShipmentPage";
 	}
 
