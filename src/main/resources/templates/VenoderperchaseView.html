@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<!-- ----------View Vendor Parchase Page------------- -->
+
+	<div class="container mt-3">
+
+
+		<h2>Vendor Parchase Table</h2>
+
+		<table class="table table-bordered">
+			<thead>
+
+				<tr>
+					<th>Order ID</th>
+					<th>OrderCode</th>
+					<th>Vendor Name</th>
+					<th>Shipment</th>
+					<th>Status</th>
+					<th>Option</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="list : ${list}">
+					<td th:text="${list .id}"></td>
+					<td th:text="${list .orderCode}"></td>
+
+					<td
+						th:text="${list.user != null ? list.user.name : 'No Vendor Name'}"></td>
+					<td
+						th:text="${list.shipment != null ? list.shipment.carrierName : 'No Name'}"></td>
+					<td th:text="${list .status}"></td>
+
+					<td><a
+						th:href="@{/addproduct?vendorId={vendorId}(vendorId=${list.id})}"
+						class="btn btn-primary">Option</a></td>
+
+					<td><a
+						th:href="@{/vendorupdate?vendorId={vendorId}(vendorId=${list.id})}">Update</a></td>
+
+					<td><a
+						th:href="@{/vendordelete?vendorId={vendorId}(vendorId=${list.id})}">Delete</a></td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+</body>
+</html>

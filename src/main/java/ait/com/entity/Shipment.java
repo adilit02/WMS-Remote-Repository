@@ -16,6 +16,8 @@ import lombok.ToString;
 @Data
 @Entity
 @ToString(exclude ={"Product"})
+//@ToString(exclude ={"Product","VenoderPerches"})
+
 @Table(name = "shipments")
 public class Shipment {
 
@@ -26,7 +28,7 @@ public class Shipment {
 
 	private Long orderId;
 	// private String cType;
-	private String carrierName;
+	private String carrierName;  //carrierName
 
 	private String trackingNumber;
 
@@ -39,7 +41,13 @@ public class Shipment {
 	@OneToMany(mappedBy = "shipment", cascade = CascadeType.ALL)
 
 	private List<Product> product;
-
+	
+	/*
+	 
+	@OneToMany(mappedBy = "shipment",cascade = CascadeType.ALL)
+	private List<VenoderPerches> venoderPerches;
+	
+     */
 	
 
 }

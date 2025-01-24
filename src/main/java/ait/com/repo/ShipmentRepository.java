@@ -10,8 +10,8 @@ import ait.com.entity.Shipment;
 public interface ShipmentRepository extends JpaRepository<Shipment, Integer> {
 
 	List<Shipment> findByOrderId(Long Id);
-	
 
-	@Query("select id,carrierName from Shipment")// class Variable name And Class Name  
-	 List<Object[]> getShipmentIdAndCarrierName();
+	@Query("select id,carrierName from Shipment") // class Variable name And Class Name
+	List<Object[]> getShipmentIdAndCarrierName();
 }
+ 

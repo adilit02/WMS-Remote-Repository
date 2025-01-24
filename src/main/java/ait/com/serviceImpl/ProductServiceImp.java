@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import ait.com.entity.Product;
 import ait.com.repo.OrderRepository;
-import ait.com.repo.ProductReoisitory;
+import ait.com.repo.ProductRpositery;
 import ait.com.repo.ShipmentRepository;
 import ait.com.service.ProductService;
 
@@ -24,7 +24,7 @@ public class ProductServiceImp implements ProductService {
 	private ShipmentRepository ShipmentRepo;
 
 	@Autowired
-	private ProductReoisitory ProductRepo;
+	private ProductRpositery ProductRepo;
 
 	public Product saveProduct(Product product) {
 		return ProductRepo.save(product);

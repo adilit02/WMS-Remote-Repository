@@ -1,8 +1,5 @@
 package ait.com.entity;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,23 +12,22 @@ import lombok.ToString;
 
 @Data
 @Entity
-@ToString(exclude = {"order", "shipment"})
-@Table(name="product")
-public class Product {
+//@ToString(exclude = {"user", "shipment"})
+@Table(name = "venoder_Dashbord_table")
+public class VenoderPerches {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer pid;
-	private String pname;
-	private double price;
-	private double totalPrice;
-	
-	@ManyToOne(cascade = CascadeType.ALL )
-	private Order order;
-	
-	@ManyToOne(cascade = CascadeType.ALL )
-	
+	private Integer id;
+	private String orderCode;
+	private String status;
+
+	@ManyToOne
+	@JoinColumn(name = "shipment_fk")
 	private Shipment shipment;
 
-	
+	@ManyToOne
+	@JoinColumn(name = "user_fk")
+	private User user;
+
 }

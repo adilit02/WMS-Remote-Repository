@@ -58,14 +58,15 @@
                   <br>
                   
 			<div class="mb-3">
-				<label for="exampleInputName" class="form-label">Order Type
-					:</label> <select th:field="*{order}">
+				<label for="exampleInputName" class="form-label">Order Type:</label>
+				
+				 <select th:field="*{order}">
 					<option value=" ">--Order--</option>
-					<option th:each="ord:${order}" th:value="${ord.key}"
-						th:text="${ord.value}"></option>
-
-
-				</select> <label for="exampleInputName" class="form-label">Shipment
+					<option th:each="ord:${order}" th:value="${ord.key}" th:text="${ord.value}"></option>
+					
+					</select> 
+					
+				<label for="exampleInputName" class="form-label">Shipment
 					Type :</label> <select th:field="*{shipment}">
 					<option value=" ">--Shipment--</option>
 					<option th:each="ship:${shipment}" th:value="${ship.key}"
