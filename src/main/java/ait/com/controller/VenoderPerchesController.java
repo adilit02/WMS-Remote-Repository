@@ -91,8 +91,8 @@ public class VenoderPerchesController {
 	 * 
 	 */
 	@GetMapping("/addproduct")
-	public String getOrderId(@RequestParam("vendorId") Integer OrdId, Model model) {
-		VenoderPerches OrderId = venoderperchesService.getOneVenoderPerchase(OrdId);
+	public String getOrderId(@RequestParam("vendorId") Integer oid, Model model) {
+		VenoderPerches OrderId = venoderperchesService.getOneVenoderPerchase(oid);
 
 		/*
 		 * VendorPurchase Table Id Wise Row Data Fetch
@@ -114,8 +114,6 @@ public class VenoderPerchesController {
 
 	}
 	
-       //--------------------Working ---------------------
-	
 	@PostMapping("/add")
 	public String AddProduct(@ModelAttribute("purchaeProduct") PurchesProduct purchesProduct, Model model) {
 		
@@ -124,7 +122,7 @@ public class VenoderPerchesController {
 		
 		venoderperchesService.changeStatus(oid,Status.PICKING.name());
 		
-		return "redirect:addproduct?OrdId="+oid;
+		return "redirect:addproduct?vendorId="+oid;
 	}
 	
 	
