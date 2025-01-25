@@ -61,10 +61,7 @@ public class VenoderPerchesController {
 
 		model.addAttribute("list", Vnd_list);
 
-		System.out.println(Vnd_list);
-
 		return "VenoderperchaseView";
-
 	}
 
 	@GetMapping("/vendordelete")
@@ -97,7 +94,7 @@ public class VenoderPerchesController {
 		/*
 		 * VendorPurchase Table Id Wise Row Data Fetch
 		 */
-		model.addAttribute("vendorPerchaseDtl", OrderId); //All VendorPurchase Id Wise Data
+		model.addAttribute("vendorPerchaseDtl", OrderId); // All VendorPurchase Id Wise Data
 
 		uiModule2(model); // Fetch Product Id And Name Data
 		/*
@@ -106,23 +103,55 @@ public class VenoderPerchesController {
 
 		model.addAttribute("purchaeProduct", new PurchesProduct()); // create PurchesProduct Empty Object
 
-		List<PurchesProduct> allPurchesProduct = venoderperchesService.getAllPurchesProduct();
-
+		//List<PurchesProduct> allPurchesProduct = venoderperchesService.getAllPurchesProduct(OrderId);
+		List<PurchesProduct> allPurchesProduct=venoderperchesService.getAllPurchesProduct(oid);
 		model.addAttribute("list", allPurchesProduct); // allPurchesProduct Empty []
 
 		return "PurchaseScreen2";
 
 	}
-	
+
 	@PostMapping("/add")
 	public String AddProduct(@ModelAttribute("purchaeProduct") PurchesProduct purchesProduct, Model model) {
+
+		venoderperchesService.savePurchseProduct(purchesProduct);
+		Integer oid = purchesProduct.getVendor().getId();// vendor id Opration
+
+		venoderperchesService.changeStatus(oid, Status.PICKING.name()); // vendoer Id Wise Status Change
+
+		return "redirect:addproduct?vendorId=" + oid;
+	}
+
+	@GetMapping("/remove")
+	public String RemoveProduct(@RequestParam("pid") Integer pid, @RequestParam("oid") Integer oid, Model model) {
+
+		/*
+		 * Purchase Product Id Wise Row Data Delete
+		 */
 		
-          venoderperchesService.savePurchseProduct(purchesProduct);
-		Integer oid = purchesProduct.getVendor().getId();//vendor id Opration
+		venoderperchesService.RemovePurchesProductProuct(pid);
+
+		/*
+		 * All Product Purchase Table List Data [] Empty So Change Status
+		 */
+		if(venoderperchesService.getProductCountByOrderId(oid)==0)
+		{
+			venoderperchesService.changeStatus(oid, Status.OPEN.name());
+		}
 		
-		venoderperchesService.changeStatus(oid,Status.PICKING.name());
+		return "redirect:addproduct?vendorId=" + oid;
+	}
+	
+	/*
+	 * Order Now
+	 */
+
+	@GetMapping("/placeOrder")
+	public String placeOrder(@RequestParam("oid")Integer oid,Model model )
+	{
+		venoderperchesService.changeStatus(oid, Status.ORDERED.name());
 		
-		return "redirect:addproduct?vendorId="+oid;
+		return "redirect:addproduct?vendorId=" + oid;
 	}
 	
 	

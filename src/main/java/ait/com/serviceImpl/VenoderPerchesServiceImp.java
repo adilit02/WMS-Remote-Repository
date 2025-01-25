@@ -122,12 +122,13 @@ public class VenoderPerchesServiceImp implements VenoderPerchesService {
 	}
 
 	@Override
-	public List<PurchesProduct> getAllPurchesProduct() {
-		return PurchesProductRepo.findAll();
+	public List<PurchesProduct> getAllPurchesProduct(Integer orderId) {
+		return PurchesProductRepo.getAllPurchaseProductById(orderId);
 	}
 
 	@Override
 	public void RemovePurchesProductProuct(Integer id) {
+
 		PurchesProductRepo.deleteById(id);
 
 	}
@@ -137,6 +138,12 @@ public class VenoderPerchesServiceImp implements VenoderPerchesService {
 	public void changeStatus(Integer oid, String pstatus) {
 
 		VenoderPerchaseRepo.updateStatusById(oid, pstatus);
+	}
+
+	@Override
+	public Integer getProductCountByOrderId(Integer orderId) {
+
+		return PurchesProductRepo.getProductCountByOrderId(orderId);
 	}
 
 }

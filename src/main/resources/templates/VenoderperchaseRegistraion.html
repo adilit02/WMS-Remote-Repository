@@ -66,10 +66,11 @@
 					<option value=" ">--USER--</option>
 					<option th:each="usr:${user}" th:value="${usr.key}"
 						th:text="${usr.value}"></option>
-
 				</select>
 			</div>
+			
 			<br>
+			
 			<button type="submit" class="btn btn-primary">Register Here.</button><span><h2 class="text-success" th:text="${msg}"></h2></span>
 		</form>
 	</div>

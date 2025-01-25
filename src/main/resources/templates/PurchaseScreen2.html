@@ -22,6 +22,16 @@
 .rb {
 	border-right: 2px solid red;
 }
+
+.table-thead {
+	background-color: yellow;
+	color: blue;
+	font-size: 20px;
+}
+
+.remove {
+	color: red;
+}
 </style>
 </head>
 <body class="container">
@@ -37,11 +47,13 @@
 				<dt>Status</dt>
 				<dd th:text="${vendorPerchaseDtl.status}"></dd>
 			</dl>
-			<div class="form-group">
-			
-              <form th:action="@{/add}" th:method="post" th:object="${purchaeProduct}">
+			<div class="form-group" th:if="${vendorPerchaseDtl.status=='PICKING' || vendorPerchaseDtl.status=='OPEN'}"> <!-- th:if="${vendorPerchaseDtl.status=='PICKING'}|| ${vendorPerchaseDtl.status=='OPEN'}" -->
+
+				<form th:action="@{/add}" th:method="post"
+					th:object="${purchaeProduct}">
 					<div>
-						<input type="hidden" name="vendor.id" th:value="${vendorPerchaseDtl.id}">
+						<input type="hidden" name="vendor.id"
+							th:value="${vendorPerchaseDtl.id}">
 					</div>
 					<div class="form-group">
 						<label>PRODUCT</label> <select class="form-select"
@@ -54,8 +66,8 @@
 
 
 					<div class="form-group">
-						<label>Quntity</label> 
-						<input type="number" th:field="*{quantity}" class="form-control">
+						<label>Quntity</label> <input type="number" th:field="*{quantity}"
+							class="form-control">
 					</div>
 
 					<div class="mt-5">
@@ -71,13 +83,14 @@
 
 		<div>
 			<table class="table table-hover">
-				<thead>
+				<thead class="table-thead">
 					<tr>
 						<th>Sno</th>
 						<th>Product Name</th>
+						<th>quantity</th>
 						<th>Price</th>
 						<th>Total</th>
-						<th>Remove</th>
+						<th class="remove" th:if="${vendorPerchaseDtl.status=='PICKING'}">Remove</th>
 					</tr>
 				</thead>
 
@@ -87,14 +100,26 @@
 					<tr th:each="li,i :${list}">
 						<td th:text="${i.count}"></td>
 						<td th:text="${li.product.pname}"></td>
-						<td th:text="${li.product.price}"></td>
 						<td th:text="${li.quantity}"></td>
-						<td><a th:href="@{/#?vendorId={vendorId}(vendorId=${li.id})}">Remove</a></td>
+						<td th:text="${li.product.price}"></td>
+						<td th:text="${li.product.totalPrice}"></td>
+						<!-- <td th:text="${li.quantity}"></td> -->
+						
+						<td th:if="${vendorPerchaseDtl.status=='PICKING'}">
+						    <a th:href="@{/remove?pid={prodId}&oid={orderId}(prodId=${li.id},orderId=${vendorPerchaseDtl.id})}" class="btn btn-danger btn-sm" >Remove</a>	
+						</td>
 
 					</tr>
 				</tbody>
 
 			</table>
+
+			<hr>
+
+			<div class="text-center" th:if="${vendorPerchaseDtl.status=='PICKING'}">
+
+				<a  th:href="@{/placeOrder?oid={orderId}(orderId=${vendorPerchaseDtl.id})}"class="btn btn-success">Order Now</a>
+			</div>
 
 		</div>
 	</div>

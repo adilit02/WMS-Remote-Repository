@@ -36,7 +36,7 @@ public interface VenoderPerchesService {
 	 */
 	
 	public Integer savePurchseProduct(PurchesProduct purchesProduct);
-	public List<PurchesProduct> getAllPurchesProduct();
+	public List<PurchesProduct> getAllPurchesProduct(Integer orderId);
 	public void RemovePurchesProductProuct(Integer id);
 	
 	/*
@@ -44,4 +44,11 @@ public interface VenoderPerchesService {
 	 */
 	
 	public void changeStatus(Integer oid,String pstatus);
+	
+	/*
+	 * Count PurchaseProduct
+	 * 
+	 */
+	
+	public Integer getProductCountByOrderId(Integer orderId);
 }
