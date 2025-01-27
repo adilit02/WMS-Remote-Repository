@@ -15,16 +15,14 @@
 </head>
 <body>
 
-	<!-- ----------View Vendor Parchase Page------------- -->
+	<!-- ----------View Vendor Purchase Page------------- -->
 
 	<div class="container mt-3">
-
 
 		<h2>Vendor Parchase Table</h2>
 
 		<table class="table table-bordered">
 			<thead>
-
 				<tr>
 					<th>Order ID</th>
 					<th>OrderCode</th>
@@ -32,6 +30,7 @@
 					<th>Shipment</th>
 					<th>Status</th>
 					<th>Option</th>
+					<th>Download PDF</th>
 					<th>Update</th>
 					<th>Delete</th>
 				</tr>
@@ -51,6 +50,9 @@
 						th:href="@{/addproduct?vendorId={vendorId}(vendorId=${list.id})}"
 						class="btn btn-primary">Option</a></td>
 
+					<td><a
+						th:href="@{/pdfGenrate?vendorId={vendorId}(vendorId=${list.id})}" class="btn btn-primary">Generate
+							Inv</a></td>
 					<td><a
 						th:href="@{/vendorupdate?vendorId={vendorId}(vendorId=${list.id})}">Update</a></td>
 

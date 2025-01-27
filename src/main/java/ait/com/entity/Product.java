@@ -25,6 +25,8 @@ public class Product {
 	private String pname;
 	private double price;
 	private double totalPrice;
+	private double totalPriceWithGST;
+	private Integer gstRate;
 	
 	@ManyToOne(cascade = CascadeType.ALL )
 	private Order order;

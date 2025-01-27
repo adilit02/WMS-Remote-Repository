@@ -20,7 +20,7 @@ public class PurchesProduct {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	private Integer id;
-	private String quantity;
+	private Integer quantity;
 	
 	@ManyToOne
 	@JoinColumn(name="product_fk")
